@@ -1,0 +1,85 @@
+<!-- $Id: pom.xml 220 2012-07-27 21:08:31Z  $ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<artifactId>aeronomos</artifactId>
+		<groupId>com.aeronomos</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>hibernatebundle</artifactId>
+	<packaging>bundle</packaging>
+	<name>AeroNomos - Hibernate Bundle</name>
+	<url>http://www.aeronomos.com</url>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<version>1.4.0</version>
+				<configuration>
+					<instructions>
+						<manifestLocation>META-INF</manifestLocation>
+						<_include>-osgi.bnd</_include>
+					</instructions>
+				</configuration>
+			</plugin>
+
+			<!-- deploy bundle to container -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>fuse-deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<!-- copy bundle to Fuse/deploy -->
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${deployment.dir}</outputDirectory>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<failOnWarning>false</failOnWarning>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>jsr250-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+</project>

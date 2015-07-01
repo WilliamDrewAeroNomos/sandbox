@@ -1,0 +1,93 @@
+<xs:schema targetNamespace="http://model.aeronomos.org/message"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:cmn="http://model.aeronomos.org/common-types"
+	xmlns:u="http://model.aeronomos.org/user" xmlns:msg="http://model.aeronomos.org/message"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	version="0.2" xml:lang="en" jaxb:version="2.0">
+
+	<xs:import schemaLocation="common-types.xsd"
+		namespace="http://model.aeronomos.org/common-types" />
+
+	<xs:import schemaLocation="user.xsd" namespace="http://model.aeronomos.org/user" />
+
+	<xs:annotation>
+		<xs:appinfo>
+			<jaxb:globalBindings>
+				<jaxb:javaType name="java.util.Calendar" xmlType="xs:dateTime"
+					parseMethod="javax.xml.bind.DatatypeConverter.parseDateTime"
+					printMethod="javax.xml.bind.DatatypeConverter.printDateTime" />
+			</jaxb:globalBindings>
+		</xs:appinfo>
+	</xs:annotation>
+
+	<!--	<xs:element name="ListSimulationDefinintionsRequest">-->
+	<!--		<xs:complexType>-->
+	<!--			<xs:complexContent>-->
+	<!--				<xs:extension base="cmn:messageType">-->
+	<!--				</xs:extension>-->
+	<!--			</xs:complexContent>-->
+	<!--		</xs:complexType>-->
+	<!--	</xs:element>-->
+
+	<!--	<xs:element name="CreateUserRequest">-->
+	<!--		<xs:complexType>-->
+	<!--			<xs:complexContent>-->
+	<!--				<xs:extension base="cmn:messageType">-->
+	<!--					<xs:sequence>-->
+	<!--
+		<xs:element name="user" type="u:userType" nillable="false" />
+	-->
+	<!--					</xs:sequence>-->
+	<!--				</xs:extension>-->
+	<!--			</xs:complexContent>-->
+	<!--		</xs:complexType>-->
+	<!--	</xs:element>	-->
+
+	<xs:complexType name="CreateUserRequest">
+		<xs:complexContent>
+			<xs:extension base="cmn:messageType">
+				<xs:sequence>
+					<xs:element name="user" type="u:userType" nillable="false" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!--	<xs:element name="RemoveUserRequest">-->
+	<!--		<xs:complexType>-->
+	<!--			<xs:complexContent>-->
+	<!--				<xs:extension base="cmn:messageType">-->
+	<!--					<xs:sequence>-->
+	<!--
+		<xs:element name="user" type="u:userType" nillable="false" />
+	-->
+	<!--					</xs:sequence>-->
+	<!--				</xs:extension>-->
+	<!--			</xs:complexContent>-->
+	<!--		</xs:complexType>-->
+	<!--	</xs:element>-->
+
+	<xs:complexType name="RemoveUserRequest">
+		<xs:complexContent>
+			<xs:extension base="cmn:messageType">
+				<xs:sequence>
+					<xs:element name="user" type="u:userType" nillable="false" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<!--	<xs:element name="UpdateUserRequest">-->
+	<!--		<xs:complexType>-->
+	<!--			<xs:complexContent>-->
+	<!--				<xs:extension base="cmn:MessageType">-->
+	<!--					<xs:sequence>-->
+	<!--
+		<xs:element name="User" type="u:UserType" nillable="false" />
+	-->
+	<!--					</xs:sequence>-->
+	<!--				</xs:extension>-->
+	<!--			</xs:complexContent>-->
+	<!--		</xs:complexType>-->
+	<!--	</xs:element>-->
+
+</xs:schema>

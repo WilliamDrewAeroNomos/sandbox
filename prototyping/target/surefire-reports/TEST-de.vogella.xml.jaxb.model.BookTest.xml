@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="1" time="0.575" errors="0" skipped="0" tests="2" name="de.vogella.xml.jaxb.model.BookTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
+    <property name="java.vm.version" value="20.12-b01-434"/>
+    <property name="awt.nativeDoubleBuffering" value="true"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="mrj.build" value="10M3909"/>
+    <property name="java.vm.vendor" value="Apple Inc."/>
+    <property name="java.vendor.url" value="http://www.apple.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/williamdrew/workspace/aeronomos/sandbox/maven.1349528462444/prototyping"/>
+    <property name="java.runtime.version" value="1.6.0_37-b06-434-10M3909"/>
+    <property name="java.awt.graphicsenv" value="apple.awt.CGraphicsEnvironment"/>
+    <property name="basedir" value="/Users/williamdrew/workspace/aeronomos/sandbox/maven.1349528462444/prototyping"/>
+    <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="surefire.real.class.path" value="/var/folders/vI/vIrwC+URH90ogb9Xgv3Jv++++TI/-Tmp-/surefirebooter3043933656296950165.jar"/>
+    <property name="java.io.tmpdir" value="/var/folders/vI/vIrwC+URH90ogb9Xgv3Jv++++TI/-Tmp-/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="sun.jnu.encoding" value="MacRoman"/>
+    <property name="java.library.path" value=".:/Users/williamdrew/Library/Java/Extensions:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="surefire.test.class.path" value="/Users/williamdrew/workspace/aeronomos/sandbox/maven.1349528462444/prototyping/target/test-classes:/Users/williamdrew/workspace/aeronomos/sandbox/maven.1349528462444/prototyping/target/classes:/Users/williamdrew/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/williamdrew/.m2/repository/org/apache/mina/mina-core/2.0.4/mina-core-2.0.4.jar:/Users/williamdrew/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/runtime/0.4.1/runtime-0.4.1.jar:/Users/williamdrew/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1.6/jaxb-impl-2.1.6.jar:/Users/williamdrew/.m2/repository/javax/xml/bind/jaxb-api/2.1/jaxb-api-2.1.jar:/Users/williamdrew/.m2/repository/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar:/Users/williamdrew/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/Users/williamdrew/.m2/repository/commons-lang/commons-lang/2.2/commons-lang-2.2.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/testing/0.4.1/testing-0.4.1.jar:/Users/williamdrew/.m2/repository/xmlunit/xmlunit/1.0/xmlunit-1.0.jar:/Users/williamdrew/.m2/repository/commons-io/commons-io/1.2/commons-io-1.2.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/tools/0.4.1/tools-0.4.1.jar:/Users/williamdrew/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar:/Users/williamdrew/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/williamdrew/.m2/repository/com/sun/xml/bind/jaxb-xjc/2.1.6/jaxb-xjc-2.1.6.jar:/Users/williamdrew/.m2/repository/net/java/dev/jaxb2-commons/jaxb-fluent-api/2.0.1/jaxb-fluent-api-2.0.1.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics/0.6.4/jaxb2-basics-0.6.4.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-runtime/0.6.4/jaxb2-basics-runtime-0.6.4.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-tools/0.6.4/jaxb2-basics-tools-0.6.4.jar:/Users/williamdrew/.m2/repository/com/google/code/javaparser/javaparser/1.0.8/javaparser-1.0.8.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.6.8"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="user.home" value="/Users/williamdrew"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="java.awt.printerjob" value="apple.awt.CPrinterJob"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="file.encoding" value="MacRoman"/>
+    <property name="user.name" value="williamdrew"/>
+    <property name="java.class.path" value="/Users/williamdrew/workspace/aeronomos/sandbox/maven.1349528462444/prototyping/target/test-classes:/Users/williamdrew/workspace/aeronomos/sandbox/maven.1349528462444/prototyping/target/classes:/Users/williamdrew/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/williamdrew/.m2/repository/org/apache/mina/mina-core/2.0.4/mina-core-2.0.4.jar:/Users/williamdrew/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/runtime/0.4.1/runtime-0.4.1.jar:/Users/williamdrew/.m2/repository/com/sun/xml/bind/jaxb-impl/2.1.6/jaxb-impl-2.1.6.jar:/Users/williamdrew/.m2/repository/javax/xml/bind/jaxb-api/2.1/jaxb-api-2.1.jar:/Users/williamdrew/.m2/repository/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar:/Users/williamdrew/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/Users/williamdrew/.m2/repository/commons-lang/commons-lang/2.2/commons-lang-2.2.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/testing/0.4.1/testing-0.4.1.jar:/Users/williamdrew/.m2/repository/xmlunit/xmlunit/1.0/xmlunit-1.0.jar:/Users/williamdrew/.m2/repository/commons-io/commons-io/1.2/commons-io-1.2.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/tools/0.4.1/tools-0.4.1.jar:/Users/williamdrew/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar:/Users/williamdrew/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/Users/williamdrew/.m2/repository/com/sun/xml/bind/jaxb-xjc/2.1.6/jaxb-xjc-2.1.6.jar:/Users/williamdrew/.m2/repository/net/java/dev/jaxb2-commons/jaxb-fluent-api/2.0.1/jaxb-fluent-api-2.0.1.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics/0.6.4/jaxb2-basics-0.6.4.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-runtime/0.6.4/jaxb2-basics-runtime-0.6.4.jar:/Users/williamdrew/.m2/repository/org/jvnet/jaxb2_commons/jaxb2-basics-tools/0.6.4/jaxb2-basics-tools-0.6.4.jar:/Users/williamdrew/.m2/repository/com/google/code/javaparser/javaparser/1.0.8/javaparser-1.0.8.jar:"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
+    <property name="sun.java.command" value="/var/folders/vI/vIrwC+URH90ogb9Xgv3Jv++++TI/-Tmp-/surefirebooter3043933656296950165.jar /var/folders/vI/vIrwC+URH90ogb9Xgv3Jv++++TI/-Tmp-/surefire1831999303113579345tmp /var/folders/vI/vIrwC+URH90ogb9Xgv3Jv++++TI/-Tmp-/surefire2387102984377215459tmp"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="apple.awt.CToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_37"/>
+    <property name="java.ext.dirs" value="/Users/williamdrew/Library/Java/Extensions:/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext"/>
+    <property name="sun.boot.class.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar"/>
+    <property name="java.vendor" value="Apple Inc."/>
+    <property name="localRepository" value="/Users/williamdrew/.m2/repository"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.apple.com/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="mrj.version" value="1060.1.6.0_37-434"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.488" classname="de.vogella.xml.jaxb.model.BookTest" name="testMessageControlBlock3">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError
+	at junit.framework.Assert.fail(Assert.java:47)
+	at de.vogella.xml.jaxb.model.BookTest.testMessageControlBlock3(BookTest.java:381)
+</failure>
+    <system-out>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
+&lt;ns4:messageControlBlock xmlns:ns2=&quot;http://model.aeronomos.org/user&quot; xmlns:ns3=&quot;http://model.aeronomos.org/message&quot; xmlns:ns4=&quot;http://model.aeronomos.org/common-types&quot; xmlns:ns5=&quot;http://model.aeronomos.org/configuration&quot;&gt;
+    &lt;ns4:uuid&gt;6b18cd2c-8c56-4c44-8b14-642368022f52&lt;/ns4:uuid&gt;
+    &lt;ns4:message xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:type=&quot;ns3:CreateUserRequest&quot;&gt;
+        &lt;ns4:name&gt;CreateUserRequest&lt;/ns4:name&gt;
+        &lt;ns3:user&gt;
+            &lt;ns2:uuid&gt;818970cf-4528-46dd-9aad-9d077c5c128f&lt;/ns2:uuid&gt;
+            &lt;ns2:name&gt;
+                &lt;ns2:first&gt;Bill&lt;/ns2:first&gt;
+                &lt;ns2:last&gt;Drew&lt;/ns2:last&gt;
+            &lt;/ns2:name&gt;
+            &lt;ns2:date-created&gt;2012-10-23T09:44:34.190-04:00&lt;/ns2:date-created&gt;
+            &lt;ns2:date-activated&gt;2012-10-23T09:44:34.190-04:00&lt;/ns2:date-activated&gt;
+            &lt;ns2:active&gt;true&lt;/ns2:active&gt;
+        &lt;/ns3:user&gt;
+    &lt;/ns4:message&gt;
+&lt;/ns4:messageControlBlock&gt;
+</system-out>
+  </testcase>
+  <testcase time="0.067" classname="de.vogella.xml.jaxb.model.BookTest" name="testCustomerSchema"/>
+</testsuite>

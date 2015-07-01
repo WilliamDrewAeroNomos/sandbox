@@ -1,0 +1,298 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.aeronomos</groupId>
+	<artifactId>org.aeronomos.model</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>AeroNomos - Model</name>
+	<description>Physical representation of the logical AeroNomos data model</description>
+	<url>http://www.aeronomos.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<product.version>0.0.1-SNAPSHOT</product.version>
+		<hazelcast-version>2.1.2</hazelcast-version>
+		<xmlbeans.version>2.4.0</xmlbeans.version>
+		<deployment.dir>../../Fuse/deploy</deployment.dir>
+	</properties>
+
+	<repositories>
+
+		<repository>
+			<id>open.iona.m2-snapshot</id>
+			<name>IONA Snapshots Repository</name>
+			<url>http://repo.open.iona.com/maven2-snapshot/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+
+		<repository>
+			<id>open.iona.m2</id>
+			<name>IONA Repository</name>
+			<url>http://repo.open.iona.com/maven2/</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+
+		<repository>
+			<id>apache-incubating</id>
+			<url>http://people.apache.org/repo/m2-incubating-repository</url>
+		</repository>
+
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+
+		<repository>
+			<id>eclipse-repository</id>
+			<name>Eclipse Repository</name>
+			<url>http://repo1.maven.org/eclipse/</url>
+		</repository>
+
+		<repository>
+			<id>repo1-cache</id>
+			<name>Central Maven 2 repository</name>
+			<url>http://repo2.maven.org/maven2</url>
+		</repository>
+
+	</repositories>
+
+	<pluginRepositories>
+
+		<pluginRepository>
+			<id>maven-repo</id>
+			<name>maven repo</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>maven2</id>
+			<name>maven repo2</name>
+			<url>http://repo2.maven.org/maven2/</url>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>com.springsource.repository.bundles.milestone</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource-Milestone Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/milestone</url>
+		</pluginRepository>
+
+
+		<!-- JAXB -->
+		<pluginRepository>
+			<id>maven2-repository.dev.java.net</id>
+			<url>http://download.java.net/maven/2</url>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>maven-repository.dev.java.net</id>
+			<url>http://download.java.net/maven/1</url>
+			<layout>legacy</layout>
+		</pluginRepository>
+
+	</pluginRepositories>
+
+	<build>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>plugin.xml</include>
+					<include>META-INF/*</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<pluginManagement>
+			<plugins>
+				<!--
+					Need Java 5, which is the default since v2.3 of the
+					maven-compiler-plugin.
+				-->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>2.5.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<!-- XML Beans -->
+
+			<!--			<plugin>-->
+			<!--				<groupId>org.codehaus.mojo</groupId>-->
+			<!--				<artifactId>xmlbeans-maven-plugin</artifactId>-->
+			<!--				<version>2.3.3</version>-->
+			<!--				<executions>-->
+			<!--					<execution>-->
+			<!--						<goals>-->
+			<!--							<goal>xmlbeans</goal>-->
+			<!--						</goals>-->
+			<!--					</execution>-->
+			<!--				</executions>-->
+			<!--				<inherited>true</inherited>-->
+			<!--				<configuration>-->
+			<!--					<schemaDirectory>src/main/xsd</schemaDirectory>-->
+			<!--
+				<sourceGenerationDirectory>src/main/java</sourceGenerationDirectory>
+			-->
+			<!--				</configuration>-->
+			<!--			</plugin>-->
+
+			<!-- JAXB compiler -->
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>1.5</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packageName>org.aeronomos.model</packageName>
+					<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+					<clearOutputDir>true</clearOutputDir>
+				</configuration>
+			</plugin>
+
+			<!-- construct the bundle -->
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Export-Package>${project.artifactId}.*</Export-Package>
+						<Private-Package>${project.artifactId}.internal</Private-Package>
+						<Include-Resource>{maven-resources}, src/main/resources</Include-Resource>
+						<Bundle-ClassPath>.</Bundle-ClassPath>
+					</instructions>
+				</configuration>
+			</plugin>
+
+			<!-- deploy bundle to container -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>fuse-deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<!-- copy bundle to Fuse/deploy -->
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${deployment.dir}</outputDirectory>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<failOnWarning>false</failOnWarning>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+		</plugins>
+	</build>
+
+	<!-- Dependency management -->
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<!--			<dependency>-->
+			<!--				<groupId>org.apache.xmlbeans</groupId>-->
+			<!--				<artifactId>com.springsource.org.apache.xmlbeans</artifactId>-->
+			<!--				<version>${xmlbeans.version}</version>-->
+			<!--			</dependency>-->
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!--		<dependency>-->
+		<!--			<groupId>org.apache.xmlbeans</groupId>-->
+		<!--			<artifactId>com.springsource.org.apache.xmlbeans</artifactId>-->
+		<!--		</dependency>-->
+
+		<dependency>
+			<groupId>net.java.dev.jaxb2-commons</groupId>
+			<artifactId>jaxb-fluent-api</artifactId>
+			<version>2.0.1</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.xml</groupId>
+					<artifactId>jaxb-xjc</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>runtime</artifactId>
+			<version>0.4.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>testing</artifactId>
+			<version>0.4.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics</artifactId>
+			<version>0.6.4</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.sun.xml</groupId>
+					<artifactId>jaxb-xjc</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+	</dependencies>
+</project>

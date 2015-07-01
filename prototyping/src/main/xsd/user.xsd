@@ -1,0 +1,41 @@
+<xs:schema targetNamespace="http://model.aeronomos.org/user"
+	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:u="http://model.aeronomos.org/user"
+	xmlns:cmn="http://model.aeronomos.org/common-types" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+	<xs:import schemaLocation="common-types.xsd"
+		namespace="http://model.aeronomos.org/common-types" />
+
+	<xs:complexType name="userType">
+		<xs:sequence>
+			<xs:element name="uuid" type="cmn:UUIDType" nillable="false" />
+			<xs:element name="name" type="u:NameType" nillable="false" />
+			<xs:element name="date-created" type="xs:dateTime"
+				nillable="false" />
+			<xs:element name="date-activated" type="xs:dateTime"
+				nillable="false" />
+			<xs:element name="active" type="xs:boolean" nillable="false" />
+			<xs:element name="role" type="u:RoleType" minOccurs="0"
+				maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="date-deactivated" type="xs:dateTime"
+			use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="NameType">
+		<xs:sequence>
+			<xs:element name="first" type="xs:string" nillable="false" />
+			<xs:element name="last" type="xs:string" nillable="false" />
+		</xs:sequence>
+		<xs:attribute name="middle" type="xs:string" use="optional" />
+	</xs:complexType>
+
+	<xs:complexType name="RoleType">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string" />
+			<xs:element name="date" type="xs:date" />
+		</xs:sequence>
+		<xs:attribute name="description" type="xs:string" use="optional" />
+	</xs:complexType>
+
+</xs:schema>

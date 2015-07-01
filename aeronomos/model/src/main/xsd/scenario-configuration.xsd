@@ -1,0 +1,35 @@
+<xs:schema xmlns:u="http://model.aeronomos.com/scenario-configuration"
+	targetNamespace="http://model.aeronomos.com/scenario-configuration"
+	xmlns:msg="http://model.aeronomos.com/message" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:cmn="http://model.aeronomos.com/common-types" elementFormDefault="qualified">
+
+	<xs:import schemaLocation="common-types.xsd"
+		namespace="http://model.aeronomos.com/common-types" />
+	<xs:import schemaLocation="user.xsd" namespace="http://model.aeronomos.com/user" />
+
+	<xs:element name="ScenarioConfiguration">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="uuid" type="cmn:UUIDType" />
+				<xs:element name="name" type="xs:string" />
+				<xs:element name="logicalStartTimeMSecs" type="xs:long" />
+				<xs:element name="description" type="xs:string" />
+				<xs:element name="defaultDurationWithinStartupProtocolMSecs"
+					type="xs:long" default="5000" />
+				<xs:element name="durationFederationExecutionMSecs" type="xs:long"
+					default="60000" />
+			</xs:sequence>
+			<xs:attribute name="durationToWaitForJoinSimulationResponseMSecs"
+				type="xs:long" default="5000" />
+			<xs:attribute name="durationToWaitForRegisterSubscriptionResponseMSecs"
+				type="xs:long" default="5000" />
+			<xs:attribute name="durationToWaitForRegisterToRunResponseMSecs"
+				type="xs:long" default="5000" />
+			<xs:attribute name="durationToWaitForStartSimulationDirectiveMSecs"
+				type="xs:long" default="5000" />
+			<xs:attribute name="durationToWaitAfterTerminationMSecs"
+				type="xs:long" default="1" />
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

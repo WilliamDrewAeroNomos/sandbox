@@ -1,0 +1,388 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.aeronomos</groupId>
+	<artifactId>hadoopinaction</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+
+	<name>hadoopinaction</name>
+	<url>http://www.aeronomos.com</url>
+	<description>Code examples and exercises from the book "Hadoop In Action"</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8
+		</project.reporting.outputEncoding>
+		<artifact-repo-address-port>mitchell:8081</artifact-repo-address-port>
+		<junit.version>4.10</junit.version>
+		<karaf.maven.plugin.version>3.0.0.RC1</karaf.maven.plugin.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<commons-logging-version>1.1.1</commons-logging-version>
+		<hadoop-core.version>1.0.2</hadoop-core.version>
+	</properties>
+
+	<!-- Profiles -->
+
+	<profiles>
+
+		<profile>
+			<id>windows</id>
+			<activation>
+				<os>
+					<name>Windows XP</name>
+					<family>Windows</family>
+					<arch>x86</arch>
+					<version>5.1.2600</version>
+				</os>
+			</activation>
+			<properties>
+				<custom-smx-type>zip</custom-smx-type>
+				<script-extension>.bat</script-extension>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>win64</id>
+			<activation>
+				<os>
+					<family>windows</family>
+					<name>Windows 7</name>
+					<arch>x86</arch>
+				</os>
+			</activation>
+			<properties>
+				<custom-smx-type>zip</custom-smx-type>
+				<script-extension>.bat</script-extension>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>unix</id>
+			<activation>
+				<os>
+					<family>unix</family>
+				</os>
+			</activation>
+			<properties>
+				<custom-smx-type>tar.gz</custom-smx-type>
+				<script-extension />
+			</properties>
+		</profile>
+
+	</profiles>
+
+	<!-- Repositories -->
+
+	<repositories>
+
+		<repository>
+			<id>central</id>
+			<url>http://${artifact-repo-address-port}/artifactory/libs-release</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>snapshots</id>
+			<url>http://${artifact-repo-address-port}/artifactory/libs-snapshot</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+
+	</repositories>
+
+	<!-- Plug-in repositories -->
+
+	<pluginRepositories>
+
+		<pluginRepository>
+			<id>central</id>
+			<url> http://${artifact-repo-address-port}/artifactory/plugins-release </url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>snapshots</id>
+			<url> http://${artifact-repo-address-port}/artifactory/plugins-snapshot </url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+
+	</pluginRepositories>
+
+	<!-- Build -->
+
+	<build>
+
+		<pluginManagement>
+
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-eclipse-plugin</artifactId>
+					<version>2.7</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.7</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>2.7</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>2.3</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>2.4.3</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.8</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>2.4.0</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.4.1</version>
+					<configuration>
+						<preparationGoals>clean verify install</preparationGoals>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.15</version>
+				</plugin>
+
+				<!-- Ant plugin -->
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+				</plugin>
+
+				<!-- KAR creation -->
+
+				<plugin>
+					<groupId>org.apache.karaf.tooling</groupId>
+					<artifactId>karaf-maven-plugin</artifactId>
+					<version>${karaf.maven.plugin.version}</version>
+					<extensions>true</extensions>
+				</plugin>
+
+			</plugins>
+
+		</pluginManagement>
+
+		<resources>
+
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>META-INF/*</include>
+				</includes>
+			</resource>
+
+		</resources>
+
+		<!-- Plugins -->
+
+		<plugins>
+
+			<!-- Compiler -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<!-- Construct the bundle -->
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<remoteOBR>true</remoteOBR>
+					<instructions>
+						<Import-Package>*</Import-Package>
+						<Export-Package>${project.groupId}.${project.artifactId}</Export-Package>
+						<Private-Package>${project.groupId}.${project.artifactId}.internal</Private-Package>
+						<Include-Resource>{maven-resources}, src/main/resources</Include-Resource>
+						<Bundle-ClassPath>.</Bundle-ClassPath>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<!-- Reporting -->
+
+	<reporting>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.6.1</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.3.1</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.5</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+
+		</plugins>
+
+	</reporting>
+
+	<!-- Dependency management -->
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<!-- Logging with Java commons logging dependencies -->
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>com.springsource.org.apache.commons.logging</artifactId>
+				<version>${commons-logging-version}</version>
+			</dependency>
+
+			<!-- JUnit -->
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+			</dependency>
+
+			<!-- Hadoop -->
+
+			<dependency>
+				<groupId>org.apache.hadoop</groupId>
+				<artifactId>hadoop-core</artifactId>
+				<version>${hadoop-core.version}</version>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<!-- Dependencies -->
+
+	<dependencies>
+
+		<!-- JUnit -->
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Logging -->
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>com.springsource.org.apache.commons.logging</artifactId>
+		</dependency>
+
+		<!-- Hadoop -->
+
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-core</artifactId>
+		</dependency>
+
+
+	</dependencies>
+
+
+</project>

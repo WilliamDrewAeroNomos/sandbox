@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Export-Package: com.aeronomos.request.internal;uses:="org.apache.mina.
+ core.future,javax.jms,org.slf4j,org.apache.mina.filter.codec,org.apac
+ he.mina.core.session,com.aeronomos.commons.exception,org.apache.mina.
+ core.filterchain,com.hazelcast.core,org.aeronomos.model.commonTypes,o
+ rg.apache.mina.core.service,org.apache.mina.transport.socket.nio,org.
+ apache.mina.filter.logging,org.apache.mina.filter.codec.textline,com.
+ aeronomos.request",com.aeronomos.request;uses:="com.aeronomos.commons
+ .exception"
+Private-Package: com.aeronomos.request.internal
+Bundle-ClassPath: .
+Built-By: wdrew
+Tool: Bnd-0.0.238
+Bundle-Name: AeroNomos - Request
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.6.0_24
+Bundle-Version: 0.0.1.SNAPSHOT
+Bnd-LastModified: 1345288312900
+Bundle-ManifestVersion: 2
+Import-Package: com.aeronomos.commons.exception,com.aeronomos.request,
+ com.aeronomos.request.internal,com.hazelcast.core;version="2.1",javax
+ .jms;version="1.1",org.aeronomos.model.commonTypes,org.apache.mina.co
+ re.filterchain;version="2.0",org.apache.mina.core.future;version="2.0
+ ",org.apache.mina.core.service;version="2.0",org.apache.mina.core.ses
+ sion;version="2.0",org.apache.mina.filter.codec;version="2.0",org.apa
+ che.mina.filter.codec.textline;version="2.0",org.apache.mina.filter.l
+ ogging;version="2.0",org.apache.mina.transport.socket.nio;version="2.
+ 0",org.slf4j;version="1.5"
+Bundle-SymbolicName: com.aeronomos.com.aeronomos.request
+Originally-Created-By: Apache Maven Bundle Plugin
+

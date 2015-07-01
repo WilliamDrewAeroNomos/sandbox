@@ -1,0 +1,25 @@
+{
+	"namespace":"com.aeronomos.sandbox.avroexample.model",
+	"type":"record",
+	"name":"Automobile",
+	"fields":[
+		{
+			"name":"modelName",
+			"type":"string"
+		},
+		{
+			"name":"make",
+			"type":"string"
+		},
+		{
+			"name":"modelYear",
+			"type":"int"
+		},
+		{
+			"name":"passengerCapacity",
+			"type":"int"
+		}
+		
+	]
+	
+}

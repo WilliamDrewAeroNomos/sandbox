@@ -1,0 +1,23 @@
+
+Import-Package: \
+	javax.sql*, \
+	javax.naming*, \
+	javax.transaction;version="1.1.0", \
+	org.xml.sax*, \
+	org.slf4j, \
+	!*
+
+
+Export-Package: \
+	org.hibernate*;version="3.2.0";-split-package:=merge-last, \
+	javax.persistence.*;version="1.1.0", \
+	javassist.*;version="3.12.GA", \ 
+	javax.annotation*;version="1.0.0"
+	
+Embed-Dependency: !javax.jms*, \
+	*
+
+Embed-Transitive: true
+
+
+

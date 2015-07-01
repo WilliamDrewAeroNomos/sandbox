@@ -1,0 +1,14 @@
+<xs:schema targetNamespace="http://model.aeronomos.com/configuration"
+	xmlns:config="http://model.aeronomos.com/configuration" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+	<xs:element name="heartbeat-configuration">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="interval-between-beats-msecs" type="xs:int" />
+				<xs:element name="generate-heartbeat" type="xs:boolean" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

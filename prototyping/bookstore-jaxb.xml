@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns3:bookStore xmlns:ns2="org.aeronomos.model.book" xmlns:ns3="org.aeronomos.model.bookstore">
+    <bookList>
+        <ns2:book>
+            <writer>Neil Strauss</writer>
+            <title>The Game</title>
+            <publisher>Harpercollins</publisher>
+            <isbn>978-0060554736</isbn>
+        </ns2:book>
+        <ns2:book>
+            <writer>Charlotte Roche</writer>
+            <title>Feuchtgebiete</title>
+            <publisher>Dumont Buchverlag</publisher>
+            <isbn>978-3832180577</isbn>
+        </ns2:book>
+    </bookList>
+    <location>Frankfurt Airport</location>
+    <name>Fraport Bookstore</name>
+</ns3:bookStore>

@@ -1,0 +1,9 @@
+-------------------------------------------------------------------------------
+Test set: de.vogella.xml.jaxb.model.BookTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.582 sec <<< FAILURE!
+testMessageControlBlock3(de.vogella.xml.jaxb.model.BookTest)  Time elapsed: 0.491 sec  <<< FAILURE!
+junit.framework.AssertionFailedError
+	at junit.framework.Assert.fail(Assert.java:47)
+	at de.vogella.xml.jaxb.model.BookTest.testMessageControlBlock3(BookTest.java:381)
+

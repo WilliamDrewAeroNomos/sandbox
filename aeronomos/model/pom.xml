@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>aeronomos</artifactId>
+		<groupId>com.aeronomos</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>com.aeronomos.model</artifactId>
+	<packaging>bundle</packaging>
+	<name>AeroNomos - Model</name>
+	<url>http://www.aeronomos.com</url>
+	<build>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>plugin.xml</include>
+					<include>META-INF/*</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<plugins>
+
+			<!-- XML Beans -->
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xmlbeans-maven-plugin</artifactId>
+				<version>2.3.3</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>xmlbeans</goal>
+						</goals>
+					</execution>
+				</executions>
+				<inherited>true</inherited>
+				<configuration>
+					<schemaDirectory>src/main/xsd</schemaDirectory>
+					<!-- <sourceGenerationDirectory>target/generated/xmlbeans</sourceGenerationDirectory> -->
+					<sourceGenerationDirectory>src/main/java</sourceGenerationDirectory>
+				</configuration>
+			</plugin>
+
+			<!-- construct the bundle -->
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>2.3.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Export-Package>${project.artifactId}.*</Export-Package>
+						<Private-Package>${project.artifactId}.internal</Private-Package>
+						<Import-Package>org.apache.xmlbeans.impl.schema;version="2.4",*</Import-Package>
+						<Include-Resource>{maven-resources}, src/main/resources</Include-Resource>
+						<Bundle-ClassPath>.</Bundle-ClassPath>
+					</instructions>
+				</configuration>
+			</plugin>
+
+			<!-- deploy bundle to container -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>fuse-deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<!-- copy bundle to Fuse/deploy -->
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${deployment.dir}</outputDirectory>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<failOnWarning>false</failOnWarning>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.aeronomos</groupId>
+			<artifactId>com.aeronomos.commons</artifactId>
+		</dependency>
+
+		<dependency>
+			<artifactId>hazelcast</artifactId>
+			<groupId>com.hazelcast</groupId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>com.springsource.org.apache.xmlbeans</artifactId>
+		</dependency>
+		
+		<!-- JDOM - version used in ServiceMix -->
+
+		<dependency>
+			<groupId>org.apache.servicemix.bundles</groupId>
+			<artifactId>org.apache.servicemix.bundles.jdom</artifactId>
+		</dependency>
+
+		<!-- End of JDOM -->
+
+	</dependencies>
+
+</project>

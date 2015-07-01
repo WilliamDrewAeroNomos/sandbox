@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>aeronomos</artifactId>
+		<groupId>com.aeronomos</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>com.aeronomos.simulation</artifactId>
+	<packaging>bundle</packaging>
+	<name>AeroNomos - Simulation</name>
+	<url>http://www.aeronomos.com</url>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>plugin.xml</include>
+					<include>META-INF/*</include>
+				</includes>
+			</resource>
+		</resources>
+		<plugins>
+
+			<!-- build bundle -->
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<version>1.4.0</version>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Export-Package>
+							${project.artifactId}.*</Export-Package>
+						<Import-Package>*</Import-Package>
+						<Include-Resource>{maven-resources}, src/main/resources</Include-Resource>
+						<Bundle-ClassPath>.</Bundle-ClassPath>
+					</instructions>
+				</configuration>
+			</plugin>
+
+			<!-- deploy bundle to container -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>fuse-deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<!-- copy bundle to Fuse/deploy -->
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${deployment.dir}</outputDirectory>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<failOnWarning>false</failOnWarning>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.aeronomos</groupId>
+			<artifactId>com.aeronomos.commons</artifactId>
+		</dependency>
+	</dependencies>
+
+</project>
+	

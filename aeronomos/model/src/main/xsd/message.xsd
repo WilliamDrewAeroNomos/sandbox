@@ -1,0 +1,55 @@
+<xs:schema xmlns:cmn="http://model.aeronomos.com/common-types"
+	xmlns:u="http://model.aeronomos.com/user" targetNamespace="http://model.aeronomos.com/message"
+	xmlns:msg="http://model.aeronomos.com/message" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified">
+
+	<xs:import schemaLocation="common-types.xsd"
+		namespace="http://model.aeronomos.com/common-types" />
+	<xs:import schemaLocation="user.xsd" namespace="http://model.aeronomos.com/user" />
+
+	<xs:element name="ListSimulationDefinintionsRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cmn:MessageType">
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="CreateUserRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cmn:MessageType">
+					<xs:sequence>
+						<xs:element name="User" type="u:UserType" nillable="false" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="RemoveUserRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cmn:MessageType">
+					<xs:sequence>
+						<xs:element name="User" type="u:UserType" nillable="false" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="UpdateUserRequest">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="cmn:MessageType">
+					<xs:sequence>
+						<xs:element name="User" type="u:UserType" nillable="false" />
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

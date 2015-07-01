@@ -1,0 +1,305 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.aeronomos.prototype</groupId>
+	<artifactId>springdata</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>bundle</packaging>
+	<name>Spring Data Prototype</name>
+	<description>Prototype project for Spring Data</description>
+
+	<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<artifact-repo-address-port>mitchell:8081</artifact-repo-address-port>
+
+		<junit.version>4.7</junit.version>
+		<java.compiler.version>1.7</java.compiler.version>
+
+		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
+		<maven-bundle-plugin.version>2.4.0</maven-bundle-plugin.version>
+		<maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
+		<spring.version>3.2.3.RELEASE</spring.version>
+
+	</properties>
+
+	<!-- Repositories -->
+
+	<repositories>
+
+		<repository>
+			<id>central</id>
+			<url> http://${artifact-repo-address-port}/artifactory/libs-release </url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>snapshots</id>
+			<url> http://${artifact-repo-address-port}/artifactory/libs-snapshot </url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</repository>
+
+	</repositories>
+
+	<!-- Plug-in repositories -->
+
+	<pluginRepositories>
+
+		<pluginRepository>
+			<id>central</id>
+			<url> http://${artifact-repo-address-port}/artifactory/plugins-release </url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+
+		<pluginRepository>
+			<id>snapshots</id>
+			<url> http://${artifact-repo-address-port}/artifactory/plugins-snapshot </url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+		</pluginRepository>
+
+	</pluginRepositories>
+
+	<build>
+
+		<pluginManagement>
+
+			<plugins>
+
+				<plugin>
+					<groupId>org.apache.felix</groupId>
+					<artifactId>maven-bundle-plugin</artifactId>
+					<version>${maven-bundle-plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.plugin.version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>${maven-surefire-plugin.version}</version>
+				</plugin>
+
+			</plugins>
+
+		</pluginManagement>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>.</directory>
+				<includes>
+					<include>plugin.xml</include>
+					<include>META-INF/*</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<plugins>
+
+			<!-- Compile code -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.compiler.version}</source>
+					<target>${java.compiler.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- construct the bundle -->
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<manifestLocation>META-INF</manifestLocation>
+					<instructions>
+						<Import-Package>*</Import-Package>
+						<Export-Package>${project.groupId}.${project.artifactId}</Export-Package>
+						<Private-Package>${project.groupId}.${project.artifactId}.internal</Private-Package>
+						<Include-Resource>{maven-resources}, src/main/resources</Include-Resource>
+						<Bundle-ClassPath>.</Bundle-ClassPath>
+					</instructions>
+				</configuration>
+			</plugin>
+
+			<!-- install bundle to local container -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>bundle-deploy</id>
+						<phase>install</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<!-- copy bundle to ${deploy.dir.location} -->
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</artifactItem>
+							</artifactItems>
+							<outputDirectory>${deploy.dir.location}</outputDirectory>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<failOnWarning>false</failOnWarning>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+	<!-- Dependency management -->
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-mongodb</artifactId>
+				<version>1.5.2.RELEASE</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<!-- JPA -->
+
+			<dependency>
+				<groupId>org.springframework.data</groupId>
+				<artifactId>spring-data-jpa</artifactId>
+				<version>1.3.4.RELEASE</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate.javax.persistence</groupId>
+				<artifactId>hibernate-jpa-2.0-api</artifactId>
+				<version>1.0.1.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>4.0.1.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.h2database</groupId>
+				<artifactId>h2</artifactId>
+				<version>1.3.173</version>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+
+		<!-- Spring JPA -->
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>
